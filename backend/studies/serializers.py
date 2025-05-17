@@ -21,7 +21,18 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class StudySerializer(serializers.ModelSerializer):
+class StudyUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Study
-        fields = ["id", "dicom_file", "uploaded_at"]
+        # only the file is writable on upload
+        fields = ["dicom_file"]
+
+
+class StudySerializer(serializers.ModelSerializer):
+    thumbnail = serializers.ImageField(read_only=True)
+    metadata = serializers.JSONField(read_only=True)
+    dicom_file = serializers.FileField(read_only=True)
+
+    class Meta:
+        model = Study
+        fields = ["id", "dicom_file", "thumbnail", "metadata", "uploaded_at"]

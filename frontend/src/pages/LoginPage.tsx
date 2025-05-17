@@ -7,7 +7,7 @@ import React, {
 import { Container, Typography, TextField, Button, Box } from "@mui/material";
 import api from "../api";
 import { setToken } from "../auth";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { NotificationContext } from "../context/NotificationContext";
 
@@ -21,9 +21,8 @@ const LoginPage: React.FC = () => {
     username: "",
     password: "",
   });
-  const navigate = useNavigate();
 
-  const { login } = useAuth();
+  const { auth, login } = useAuth();
   const notify = useContext(NotificationContext);
 
   const [loading, setLoading] = useState(false);
@@ -44,6 +43,12 @@ const LoginPage: React.FC = () => {
       setLoading(false);
     }
   };
+
+  console.log(auth);
+
+  if (auth.access) {
+    return <Navigate to="/studies" replace />;
+  }
 
   return (
     <Container maxWidth="xs">

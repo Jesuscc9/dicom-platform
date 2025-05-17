@@ -21,6 +21,8 @@ class Study(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     dicom_file = models.FileField(upload_to="dicoms/")
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    metadata = models.JSONField(null=True, blank=True)
+    thumbnail = models.ImageField(upload_to="thumbnails/", null=True, blank=True)
 
     def __str__(self):
         return f"Study {self.id} by {self.uploaded_by}"

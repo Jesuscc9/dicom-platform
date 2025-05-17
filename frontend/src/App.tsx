@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import UploadPage from "./pages/uploadPage";
 import ListPage from "./pages/ListPage";
 import { NotificationProvider } from "./context/NotificationContext";
+import StudyDetailPage from "./pages/StudyDetailPage";
 
 export default function App() {
   return (
@@ -32,6 +33,14 @@ export default function App() {
                 element={
                   <ProtectedRoute>
                     <ListPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/studies/:id"
+                element={
+                  <ProtectedRoute>
+                    <StudyDetailPage />
                   </ProtectedRoute>
                 }
               />

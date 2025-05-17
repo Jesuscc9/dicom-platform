@@ -11,6 +11,8 @@ from studies.views import (
 )
 from rest_framework_simplejwt.views import TokenRefreshView
 from studies.views import UserMeView
+from django.contrib import admin
+from studies.views import StudyDetailView
 
 urlpatterns = [
     path("api/auth/register/", RegisterView.as_view()),
@@ -23,4 +25,11 @@ urlpatterns = [
 urlpatterns += [
     path("api/auth/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/auth/me/", UserMeView.as_view(), name="me"),
+]
+
+urlpatterns += [
+    path("api/studies/upload/", StudyUploadView.as_view()),
+    path("api/studies/", StudyListView.as_view()),
+    path("api/studies/<int:pk>/", StudyDetailView.as_view()),
+    path("admin/", admin.site.urls),
 ]

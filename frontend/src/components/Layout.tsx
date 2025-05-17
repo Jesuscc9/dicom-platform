@@ -8,7 +8,7 @@ import {
   Button,
   CssBaseline,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
